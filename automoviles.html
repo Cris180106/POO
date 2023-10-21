@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    <script>
+// se define  una clase coim el nombre Vehículo
+class Vehiculo {
+  // se crea un metodo constructor de la clase Vehículo
+  constructor(marca, modelo, año, cilindraje, precio) {
+    this.marca = marca;
+    this.modelo = modelo;
+    this.año = año;
+    this.cilindraje = cilindraje;
+    this.precio = precio;
+  }
+
+  // se define un método para obtener información del vehículo
+  obtenerInformacion() {
+    return `Marca: ${this.marca}, Modelo: ${this.modelo}, Año: ${this.año}, Cilindraje: ${this.cilindraje}, Precio: $${this.precio}`;
+  }
+
+  // se defie in método para revisar si se necesita una revisión técnica mecánica
+  revisarTecnicoMecanica() {
+    const antigüedad = new Date().getFullYear() - this.año; // Calcula la antigüedad del vehículo (años transcurridos desde el año de fabricación)
+    if (antigüedad > 5) {
+      return `Se requiere revisión técnica mecánica para el modelo ${this.modelo}`;
+    } else {
+      return `El modelo ${this.modelo} no necesita revisión técnica mecánica en este momento.`;
+    }
+  }
+
+  // se define un método para obtener el nivel de gasolina de manera aleatoria
+  obtenerNivelGasolina() {
+    const nivel = Math.floor(Math.random() * 100) + 1;
+    return `Nivel de gasolina: ${nivel}%`;
+  }
+}
+
+// se define la clase Sedán que hereda de Vehículo
+class Sedan extends Vehiculo {
+  // se define un metodo constructor de la clase Sedán
+  constructor(marca, modelo, año, cilindraje, precio, pasajeros, caja) {
+    super(marca, modelo, año, cilindraje, precio);
+    this.pasajeros = pasajeros;
+    this.caja = caja;
+  }
+
+  // se define un método para obtener información del Sedán, que incluye información específica de Sedán
+  obtenerInformacion() {
+    const informacionVehiculo = super.obtenerInformacion();
+    return `${informacionVehiculo}, Pasajeros: ${this.pasajeros}, Tipo de caja: ${this.caja}`;
+  }
+}
+
+// se crean instancias de vehículos
+const vehiculo1 = new Vehiculo("Alfa", "Romeo", 2020, 2000, 25000);
+const vehiculo2 = new Vehiculo("Chevrolet", "Camaro", 2018, 1800, 22000);
+const vehiculo3 = new Vehiculo("Lamborghini", "Aventador", 2022, 1600, 27000);
+
+// se crea una instancia de Sedán
+const sedan1 = new Sedan("Ferrari", "Jaguar", 2020, 20000, 130000000, 5, "automático");
+
+// Pruebas
+console.log("Información del Vehículo 1:");
+console.log(vehiculo1.obtenerInformacion());
+console.log(vehiculo1.revisarTecnicoMecanica());
+console.log(vehiculo1.obtenerNivelGasolina());
+
+console.log("Información del Vehículo 2:");
+console.log(vehiculo2.obtenerInformacion());
+console.log(vehiculo2.revisarTecnicoMecanica());
+console.log(vehiculo2.obtenerNivelGasolina());
+
+console.log("Información del Vehículo 3:");
+console.log(vehiculo3.obtenerInformacion());
+console.log(vehiculo3.revisarTecnicoMecanica());
+console.log(vehiculo3.obtenerNivelGasolina());
+
+console.log("Información del Sedán 1:");
+console.log(sedan1.obtenerInformacion());
+
+
+
+
+
+
+
+    </script>
+    
+</body>
+</html>

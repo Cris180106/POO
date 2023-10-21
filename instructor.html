@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+// Creación de un objeto Instructor
+const Instructor = {
+  // Función para crear un nuevo Instructor con los datos proporcionados
+  crear(nombre, especialidad, turno) {
+    return {
+      nombre,
+      especialidad,
+      turno,
+      // Método para obtener la información del Instructor
+      obtenerInformacion() {
+        return `Nombre: ${nombre}, Especialidad: ${especialidad}, Turno: ${turno}`;
+      },
+      // Método para obtener el programa de formación del Instructor
+      obtenerProgramaFormacion() {
+        if (especialidad === "Software") {
+          return "Programa de Formación: Desarrollo de Software";
+        } else if (especialidad === "Hardware") {
+          return "Programa de Formación: Administración de Hardware";
+        } else {
+          return "Programa de Formación no especificado para esta especialidad";
+        }
+      },
+    };
+  },
+};
+
+// Creación de un objeto Instructor de Planta
+const InstructorPlanta = {
+  // Función para crear un nuevo Instructor de Planta con los datos proporcionados
+  crear(nombre, especialidad, turno, fechaIncorporacion) {
+    // Crear un Instructor básico y extenderlo
+    const instructor = Instructor.crear(nombre, especialidad, turno);
+    return {
+      ...instructor,
+      fechaIncorporacion, // Corregimos la referencia a la variable
+      // Método para calcular la antigüedad del Instructor de Planta
+      calcularAntiguedad() {
+        const fechaIncorporacion = new Date(this.fechaIncorporacion); // Usamos 'this' para referirnos a la propiedad
+        const fechaActual = new Date();
+        const diferencia = fechaActual - fechaIncorporacion;
+        const meses = Math.floor(diferencia / (1000 * 60 * 60 * 24 * 30.44));
+        return `Antigüedad Laboral: ${meses} meses`;
+      },
+    };
+  },
+};
+
+// Creación de instructores
+const instructor1 = Instructor.crear("Juan Melo", "Software", "Mañana");
+const instructor2 = Instructor.crear("Maria Fernanda", "Hardware", "Tarde");
+const instructor3 = Instructor.crear("Cristian Pimiento", "Electrónica", "Noche");
+
+// Creación e  un instructor de planta
+const instructorPlanta1 = InstructorPlanta.crear("Carlos Sánchez", "Redes", "Mañana", "2020-01-15");
+
+
+console.log("Información del Instructor 1:");
+console.log(instructor1.obtenerInformacion());
+console.log(instructor1.obtenerProgramaFormacion());
+
+console.log("Información del Instructor 2:");
+console.log(instructor2.obtenerInformacion());
+console.log(instructor2.obtenerProgramaFormacion());
+
+console.log("Información del Instructor 3:");
+console.log(instructor3.obtenerInformacion());
+console.log(instructor3.obtenerProgramaFormacion());
+
+console.log("Información del Instructor de Planta 1:");
+console.log(instructorPlanta1.obtenerInformacion());
+console.log(instructorPlanta1.obtenerProgramaFormacion());
+console.log(instructorPlanta1.calcularAntiguedad());
+
+//Los 3 restos fueron realizados por Juan Pablo Bernal y Cristian Pimiento
+
+/*Este proyecto se realizo asignando clases y metodos a los retos, el primer código maneja pedidos en un 
+restaurante, con clases para representar pedidos y pedidos a domicilio,el segundo código se enfoca en 
+instructores en un centro de formación, creando objetos que describen instructores y calculan su 
+antigüedad, el tercer código trata sobre vehículos y sedanes, definiendo clases y métodos
+para obtener información de los vehículos, calcular la revisión técnica y el nivel de gasolina,
+estos bloques de codigo se encargaron de administrar informacion de diferentes temas, carros, restaurantes, profesores.*/
+
+
+
+
+
+
+    </script>
+    
+</body>
+</html>

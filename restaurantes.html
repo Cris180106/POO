@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    <script>
+// Definición de la clase PedidoRestaurante
+class PedidoRestaurante {
+  // Constructor de la clase PedidoRestaurante
+  constructor(plato, cantidad, precio) {
+    this.plato = plato;
+    this.cantidad = cantidad;
+    this.precio = precio;
+  }
+
+  // Obtiene información sobre el pedido en el restaurante.
+
+  obtenerInformacionPedido() {
+    return `Pedido: ${this.cantidad}x ${this.plato}`;
+  }// Retorna una cadena de texto con la información del pedido.
+
+  // Calcula el valor del pedido.
+ 
+  calcularValorPedido() {
+    const valorTotal = this.cantidad * this.precio;
+    return `Valor total del pedido: $${valorTotal}`;
+  } // Retorna una cadena de texto con el valor del pedido.
+
+  // se define un metodo el cual aplica un descuento al pedido si es elegible.
+ 
+  aplicarDescuento() {
+    if (this.cantidad > 2 && this.calcularValorPedido() >= 50000) {
+      const descuento = this.calcularValorPedido() * 0.1;
+      return `Descuento del 10% aplicado: -$${descuento}`;
+    } else {
+      return "No se aplica descuento para este pedido.";
+    } // Retorna una cadena de texto con el descuento aplicado o un mensaje si no aplica descuento.
+  }
+}
+
+// Definición de la clase PedidoDomicilio que hereda de PedidoRestaurante
+class PedidoDomicilio extends PedidoRestaurante {
+  // Constructor de la clase PedidoDomicilio
+  constructor(plato, cantidad, precio, tiempoEntrega, costoDomicilio) {
+    super(plato, cantidad, precio);
+    this.tiempoEntrega = tiempoEntrega;
+    this.costoDomicilio = costoDomicilio;
+  }
+
+  // Obtiene información sobre el restaurante a domicilio.
+  
+  obtenerInformacionDomicilio() {
+    return `Información del Restaurante a Domicilio:\nPedido: ${this.cantidad}x ${this.plato}\nTiempo de entrega: ${this.tiempoEntrega} minutos\nCosto de domicilio: $${this.costoDomicilio}`;
+  }// Retorna una cadena de texto con la información del pedido a domicilio.
+
+  // Calcula el valor total del pedido a domicilio.
+  
+  calcularValorPedidoDomicilio() {
+    const valorTotal = this.cantidad * this.precio + this.costoDomicilio;
+    return `Valor total del pedido a domicilio: $${valorTotal}`;
+  }// Retorna una cadena de texto con el valor total del pedido a domicilio.
+}
+
+// Creación de instancias de pedidos en el restaurante
+const pedido1 = new PedidoRestaurante("macarrones", 3, 28000);
+const pedido2 = new PedidoRestaurante("ensalada de frutas", 2, 35000);
+const pedido3 = new PedidoRestaurante("patacon", 1, 12000);
+
+// Creación de instancias de pedidos a domicilio
+const domicilio1 = new PedidoDomicilio("pasta", 7, 18000, 15, 5000);
+const domicilio2 = new PedidoDomicilio("burrito", 1, 18000, 10, 3000);
+const domicilio3 = new PedidoDomicilio("pechuga a la plancha", 1, 14000, 5, 100);
+const domicilio4 = new PedidoDomicilio("costillitas BBQ", 4, 25000, 15, 8000);
+
+// Pruebas e impresión de la información
+console.log("Información del Pedido 1:");
+console.log(pedido1.obtenerInformacionPedido());
+console.log(pedido1.calcularValorPedido());
+console.log(pedido1.aplicarDescuento());
+
+console.log("Información del Pedido 2:");
+console.log(pedido2.obtenerInformacionPedido());
+console.log(pedido2.calcularValorPedido());
+console.log(pedido2.aplicarDescuento());
+
+console.log("Información del Pedido 3:");
+console.log(pedido3.obtenerInformacionPedido());
+console.log(pedido3.calcularValorPedido());
+console.log(pedido3.aplicarDescuento());
+
+console.log("Información del Restaurante a Domicilio:");
+console.log(domicilio1.obtenerInformacionDomicilio());
+console.log(domicilio1.calcularValorPedidoDomicilio());
+console.log(domicilio2.calcularValorPedidoDomicilio());
+console.log(domicilio3.calcularValorPedidoDomicilio());
+console.log(domicilio4.calcularValorPedidoDomicilio());
+
+
+
+
+    </script>
+    
+</body>
+</html>
